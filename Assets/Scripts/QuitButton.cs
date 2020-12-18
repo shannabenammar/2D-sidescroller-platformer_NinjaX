@@ -11,26 +11,8 @@ using UnityEngine.SceneManagement; //Gives us access to load scenes/levels
 //Go back to Main Menu
 public class QuitButton : MonoBehaviour
 {
-    public GameObject PauseUI;
+    public GameObject PausePanel;
     //public GameObject GameUI;
 
-    public void quit()
-    {
-        SceneManager.LoadScene(0);
-    }
 
-    public void PauseGame()
-    {
-
-        Time.timeScale = 0;
-        PauseUI.SetActive(true);
-       // GameUI.SetActive(false);
-
-    }
-    public void ResumeGame()
-    {
-        Time.timeScale = 1;
-        PauseUI.SetActive(false);
-        //GameUI.SetActive(true);
-    }
 }

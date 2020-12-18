@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class MusicController : MonoBehaviour
 {
@@ -10,6 +10,7 @@ public class MusicController : MonoBehaviour
     private AudioSource source;
     [SerializeField]
     private AudioClip ninja, ninjaDie, finishgame;
+
 
     void Awake()
     {

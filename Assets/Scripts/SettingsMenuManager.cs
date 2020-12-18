@@ -30,4 +30,9 @@ public class SettingsMenuManager : MonoBehaviour
             SettingsPanel.SetActive(settingsState);
        } 
    }
+
+   public void QuitGame(){
+       Debug.Log("Closing game...");
+       Application.Quit();
+   }
 }

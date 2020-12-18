@@ -6,26 +6,37 @@ using UnityEngine.SceneManagement;
 public class Ninja : MonoBehaviour
 {
     private bool isDead = false;
-    Animator animator;
+    public Animator animator;
     private Vector2 screenBounds;
     private float objectWidth;
     private float objectHeight;
     public GameObject character;
     public GameObject GameOver;
-    public GameObject enemy; 
+    public GameObject enemy;
 
+    public float moveSpeed = 5f;
+    public float jumpForce = 5f;
+    public Rigidbody2D player;
 
-    
+    float mx;
+    public static int hitpoints;
+    private SpriteRenderer spriteRenderer;
+
+    public Transform feet;
+
+    public LayerMask groundLayers;
 
     void Awake()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+       
         Kill.onKill += OnDeath;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        hitpoints = 100;
         GameOver.SetActive(false);
         animator = GetComponent<Animator>();
 
@@ -35,8 +46,11 @@ public class Ninja : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -19f, 3f),
-         Mathf.Clamp(transform.position.y, -19f, 3f), transform.position.z);
+
+        mx = Input.GetAxisRaw("Horizontal");
+
+       // transform.position = new Vector3(Mathf.Clamp(transform.position.x, -19f, 3f),
+        // Mathf.Clamp(transform.position.y, -19f, 3f), transform.position.z);
 
         if (!isDead)
         {
@@ -50,20 +64,55 @@ public class Ninja : MonoBehaviour
             }
 
 
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Jump") && isGrounded())
             {
-               animator.SetInteger("Condition", 1);
+                Jump();
+                
             }
             else
             {
                 animator.SetInteger("Condition", 0);
             }
-        
+    
+         if (mx != 0 && isGrounded())//(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
+         {
+             //  if (Input.GetKey(KeyCode.LeftArrow)) spriteRenderer.flipX;
 
-         
-        }
+                    animator.SetBool("isWalking", true);
+         }
+         else{
+             animator.SetBool("isWalking", false);
+         }
+    
+    
+      }
 
       
+    }
+
+    void Jump()
+    {
+        animator.SetInteger("Condition", 1);
+        Vector2 movement = new Vector2(player.velocity.x, jumpForce);
+
+        player.velocity = movement;
+    }
+
+    bool isGrounded() {
+        Collider2D groundCheck = Physics2D.OverlapCircle(feet.position, 0.5f, groundLayers);
+        Debug.Log(groundCheck);
+        if(groundCheck) {
+            return true;
+        }
+
+        return false;
+    
+    }
+
+    void FixedUpdate()
+    {
+        Vector2 movement = new Vector2(mx * moveSpeed, player.velocity.y);
+        player.velocity = movement;
     }
     void OnDeath()
     {
@@ -81,7 +130,17 @@ public class Ninja : MonoBehaviour
         }
         
     }
-
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.name.Equals("Tony"))
+        {
+            hitpoints -= 30;
+        }
+        if (collider.gameObject.name.Equals("back wall"))
+        {
+            Debug.Log("colide");
+        }
+    }
     void OnDestroy()
     {
         Kill.onKill -= OnDeath;
