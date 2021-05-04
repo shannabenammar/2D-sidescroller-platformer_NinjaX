@@ -18,7 +18,11 @@
 <li>TO LOSE: Collide with either Bat or killer pirates </li> </ul>
 
 <h2> Game Play </h2> 
-<button type="button" type = "submit" formaction = "https://shannab.itch.io/2d-sidescroller-platformer-ninjax" >PLAY GAME!</button>
+ CLICK HERE TO PLAY! 
+<a href="https://shannab.itch.io/2d-sidescroller-platformer-ninjax" style="text-align:center">
+         <img alt="Qries" src="https://github.com/shannabenammar/2D-sidescroller-platformer_NinjaX/blob/master/Assets/Sprites/GUI/Buttons/Button%20Green/play.png"
+         width="70" height="70" class="center">
+    </a>
 <h3> Main Menu </h3>
 <img src="https://github.com/shannabenammar/2D-sidescroller-platformer_NinjaX/blob/master/openingScene.JPG" width ="450" height ="300" />
 <h3> Play Mode </h3> 
