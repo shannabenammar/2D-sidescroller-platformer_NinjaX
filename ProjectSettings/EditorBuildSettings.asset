@@ -6,11 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Main Scene.unity
+    path: Assets/Free Fantasy Adventure Music Pack/Scenes/Main Scene.unity
     guid: 17685953300ce524298aa1f2b3d087a1
   - enabled: 1
-    path: Assets/Scenes/Game Scene.unity
+    path: Assets/Free Fantasy Adventure Music Pack/Scenes/Game Scene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Free Fantasy Adventure Music Pack/Scenes/Settings Scene.unity
+    guid: 2f54d2f835ae5fc43980b9b1af076f28
   - enabled: 0
     path: Assets/Scenes/Settings Scene.unity
     guid: 2f54d2f835ae5fc43980b9b1af076f28

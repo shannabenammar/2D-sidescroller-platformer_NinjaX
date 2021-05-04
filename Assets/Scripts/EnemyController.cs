@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour
 {
     int moveSpeed = 2;
     int attackDamage;
-    int hitPoints;
+    int hitpoints;
     public float lookRadius = 4f;
     public float attackRadius = 1f;
     Transform target;
@@ -20,6 +20,8 @@ public class EnemyController : MonoBehaviour
         target = PlayerManager.instance.player.transform;
         enemy = GetComponent<SpriteRenderer>();
         enemyrb = GetComponent<Rigidbody2D>();
+
+        hitpoints = 100;
     }
 
     void Update(){
@@ -75,7 +77,6 @@ public class EnemyController : MonoBehaviour
             animator.SetBool("isMoving?", false);
             // Stretch: look into adding functionality for the enemy to be passively moving
         }
-
     }
 
     void OnDrawGizmosSelected() {
@@ -84,5 +85,11 @@ public class EnemyController : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRadius);
+    }
+
+    void OnTriggerEnter2D(Collider2D collider){
+        if (collider.gameObject.name.Equals("weapon")) {
+            hitpoints -= 50;
+        }
     }
 }
